@@ -1,4 +1,8 @@
 {
+  "variables": {
+    "memory": "16384",
+    "cores": "1"
+  },
   "provisioners": [
     {
      "type": "shell",
@@ -78,13 +82,13 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "1024"
+          "{{user `memory`}}"
         ],
         [
           "modifyvm",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{user `cores`}}"
         ]
       ]
     }

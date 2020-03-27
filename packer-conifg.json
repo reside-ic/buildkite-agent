@@ -13,7 +13,17 @@
     {
       "type": "shell",
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/cleanup.sh"
+      "script": "scripts/setup-agent.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/setup-docker.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/setup-vault.sh"
     }
   ],
   "builders": [
@@ -29,13 +39,13 @@
         " console-setup/layoutcode=us<wait>",
         " console-setup/modelcode=pc105<wait>",
         " debconf/frontend=noninteractive<wait>",
-        " debian-installer=en_US<wait>",
+        " debian-installer=en_GB<wait>",
         " fb=false<wait>",
         " initrd=/install/initrd.gz<wait>",
         " kbd-chooser/method=us<wait>",
         " keyboard-configuration/layout=USA<wait>",
         " keyboard-configuration/variant=USA<wait>",
-        " locale=en_US<wait>",
+        " locale=en_GB<wait>",
         " netcfg/get_domain=vm<wait>",
         " netcfg/get_hostname=vagrant<wait>",
         " grub-installer/bootdev=/dev/sda<wait>",
@@ -47,7 +57,7 @@
       "boot_wait": "10s",
       "disk_size": 81920,
       "guest_os_type": "Ubuntu_64",
-      "headless": false,
+      "headless": true,
       "http_directory": "http",
       "iso_urls": [
         "iso/ubuntu-18.04.4-server-amd64.iso",
@@ -81,7 +91,10 @@
   ],
   "post-processors": [
     [
-
+      {
+        "output": "builds/{{.Provider}}-ubuntu1804.box",
+        "type": "vagrant"
+      }
     ]
   ]  
 }

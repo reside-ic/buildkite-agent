@@ -2,6 +2,15 @@
 
 Buildkite agent setup
 
+
+## Setup
+
+You will need to have installed
+* Packer - see https://packer.io/intro/getting-started/install.html
+* Virtualbox - see [vimc/montagu-machine](https://github.com/vimc/montagu-machine/blob/master/provision/setup-vagrant)
+* vagrant - see [vimc/montagu-machine](https://github.com/vimc/montagu-machine/blob/master/provision/setup-vagrant)
+* vagrant-vbguest `vagrant plugin install vagrant-vbguest`
+
 ## Build
 
 Build image using

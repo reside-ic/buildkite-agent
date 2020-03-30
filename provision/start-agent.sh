@@ -5,13 +5,9 @@ set -e
 vault login -method=github
 
 ## Read docker info from vault and login
-## We need to auth buildkite-agent and have docker login store the creds
-## in buildkite-agents home dir
-pushd ~buildkite-agent
 DOCKER_USERNAME=`vault read -field=username secret/vimc-robot/dockerhub`
 vault read -field=password secret/vimc-robot/dockerhub | \
   sudo -u buildkite-agent -H docker login -u $DOCKER_USERNAME --password-stdin
-popd
 
 ## Read buildkite agent token from vault and write into cfg
 BUILDKITE_AGENT_TOKEN=`vault read -field=token secret/buildkite/agent`

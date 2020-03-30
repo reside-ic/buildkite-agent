@@ -1,4 +1,4 @@
-vault_config_file = 'provision/vault_config'
+vault_config_file = 'vault_config'
 
 if !File.file?(vault_config_file)
   raise "Run ./provision/vault-prepare.sh first!"

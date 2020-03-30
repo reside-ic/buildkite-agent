@@ -10,8 +10,8 @@ fi
 vault login -method=github
 
 ## Read docker info from vault
-DOCKER_USERNAME=`vault read -field=username secret/dockerhub`
-vault read -field=password secret/dockerhub | \
+DOCKER_USERNAME=`vault read -field=username secret/vimc-robot/dockerhub`
+vault read -field=password secret/vimc-robot/dockerhub | \
   docker login -u $DOCKER_USERNAME --password-stdin
 
 

@@ -10,7 +10,7 @@ vault login -method=github
 pushd ~buildkite-agent
 DOCKER_USERNAME=`vault read -field=username secret/vimc-robot/dockerhub`
 vault read -field=password secret/vimc-robot/dockerhub | \
-  sudo -u buildkite-agent docker login -u $DOCKER_USERNAME --password-stdin
+  sudo -u buildkite-agent -H docker login -u $DOCKER_USERNAME --password-stdin
 popd
 
 ## Read buildkite agent token from vault and write into cfg

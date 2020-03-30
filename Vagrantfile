@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
   config.ssh.password = "vagrant"
 
   config.vm.provision :shell do |shell|
-    shell.path = 'provision/start_agent.sh'
+    shell.path = 'provision/start-agent.sh'
     shell.env = vault_config
     shell.privileged = false
   end

@@ -20,8 +20,8 @@ Vagrant.configure("2") do |config|
   end
 
   agents.each do |agent|
-    config.vm.define agent[:hostname] do |agent_config|
-      agent_config.vm.hostname = agent[:hostname] + '.localdomain'
+    config.vm.define agent do |agent_config|
+      agent_config.vm.hostname = agent + '.localdomain'
     end
   end
 end

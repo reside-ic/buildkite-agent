@@ -16,7 +16,7 @@ BUILDKITE_AGENT_TOKEN=`vault read -field=token secret/buildkite/agent`
 sudo sed -i "s/xxx/${BUILDKITE_AGENT_TOKEN}/g" /etc/buildkite-agent/buildkite-agent.cfg
 
 # This is easier to do by
-SSH_CONFIG=~buildkite-agent/.ssh
+AGENT_SSH=~buildkite-agent/.ssh
 
 mkdir -p $AGENT_SSH
 vault read -field=public secret/vimc-robot/ssh > $AGENT_SSH/id_rsa.pub

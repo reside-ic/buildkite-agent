@@ -18,6 +18,10 @@ VIMC_DOCKER_PASSWORD=$(vault read -field=password /secret/vimc/registry/vimc)
 echo $VIMC_DOCKER_PASSWORD | \
     $AS_AGENT docker login -u $VIMC_DOCKER_USERNAME --password-stdin $VIMC_DOCKER_URL
 
+GITHUB_PAT=$(vault read -field=token /secret/vimc-robot/github-pat)
+echo "GITHUB_PAT=$GITHUB_PAT" > ~buildkite-agent/.Renviron
+chown -R buildkite-agent.buildkite-agent ~buildkite-agent/.Renviron
+
 ## Read buildkite agent token from vault and write into cfg
 BUILDKITE_AGENT_TOKEN=$(vault read -field=token secret/buildkite/agent)
 sudo sed -i "s/xxx/${BUILDKITE_AGENT_TOKEN}/g" /etc/buildkite-agent/buildkite-agent.cfg

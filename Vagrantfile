@@ -7,7 +7,7 @@ end
 vault_config = Hash[File.read(vault_config_file).split("\n").
                       map{|s| s.split('=')}]
 
-agents = (1..5).map { |x| "agent-" + x.to_s }
+agents = (1..7).map { |x| "agent-" + x.to_s }
 
 Vagrant.configure("2") do |config|
   config.vm.box = "builds/virtualbox-ubuntu1804.box"

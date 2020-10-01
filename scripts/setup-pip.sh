@@ -8,4 +8,4 @@ fi
 
 echo "installing pip3"
 
-sudo apt-get update & sudo apt-get install python3-pip
+sudo apt-get -y update & sudo apt-get -y install python3-pip

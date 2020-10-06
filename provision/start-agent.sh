@@ -41,6 +41,10 @@ $AS_AGENT git config --global user.email "rich.fitzjohn+vimc@gmail.com"
 $AS_AGENT git config --global user.name "vimc-robot"
 $AS_AGENT git config --global push.default simple
 
+sudo mkdir -p /etc/systemd/system/buildkite-agent.service.d
+echo "[Service]" | sudo tee -a /etc/systemd/system/buildkite-agent.service.d/env.conf
+echo "Environment=PATH=/var/lib/buildkite-agent/.local/bin:usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin" | sudo tee -a /etc/systemd/system/buildkite-agent.service.d/env.conf
+
 cat <<EOF > /etc/cron.daily/docker-cleanup
 #!/usr/bin/env bash
 docker system prune -af --volumes

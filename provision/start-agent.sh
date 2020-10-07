@@ -41,6 +41,8 @@ $AS_AGENT git config --global user.email "rich.fitzjohn+vimc@gmail.com"
 $AS_AGENT git config --global user.name "vimc-robot"
 $AS_AGENT git config --global push.default simple
 
+echo 'tags="ubuntu=true,general-node=true"' | sudo tee -a /etc/buildkite-agent/buildkite-agent.cfg
+
 cat <<EOF > /etc/cron.daily/docker-cleanup
 #!/usr/bin/env bash
 docker system prune -af --volumes
@@ -50,4 +52,4 @@ EOF
 chmod +x /etc/cron.daily/docker-cleanup
 
 ## Startup agent
-sudo systemctl enable buildkite-agent && sudo systemctl start buildkite-agent --tags "ubuntu,general-node"
+sudo systemctl enable buildkite-agent && sudo systemctl start buildkite-agent

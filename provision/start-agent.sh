@@ -41,6 +41,7 @@ $AS_AGENT git config --global user.email "rich.fitzjohn+vimc@gmail.com"
 $AS_AGENT git config --global user.name "vimc-robot"
 $AS_AGENT git config --global push.default simple
 
+echo 'export PATH=/var/lib/buildkite-agent/.local/bin:$PATH' | sudo tee -a /etc/buildkite-agent/hooks/environment
 echo 'tags="ubuntu=true,general-node=true"' | sudo tee -a /etc/buildkite-agent/buildkite-agent.cfg
 
 cat <<EOF > /etc/cron.daily/docker-cleanup

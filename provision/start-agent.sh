@@ -43,6 +43,9 @@ $AS_AGENT git config --global push.default simple
 
 echo 'export PATH=/var/lib/buildkite-agent/.local/bin:$PATH' | sudo tee -a /etc/buildkite-agent/hooks/environment
 
+TAG_STRING="tags=\"node-type=general,os=ubuntu,vmhost=$VMHOST_NAME\""
+echo $TAG_STRING | sudo tee -a /etc/buildkite-agent/buildkite-agent.cfg
+
 cat <<EOF > /etc/cron.daily/docker-cleanup
 #!/usr/bin/env bash
 docker system prune -af --volumes

@@ -2,6 +2,8 @@
 
 Buildkite agent setup
 
+This is archived as we've now switched to buildkite agents hosted on windows server. Setup can be found in [reside-hyperv-scripts](https://github.com/reside-ic/reside-hyperv-scripts) repo.
+
 
 ## Setup
 

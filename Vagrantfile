@@ -5,7 +5,9 @@ if !File.file?(vault_config_file)
 end
 
 vault_config = Hash[File.read(vault_config_file).split("\n").
-                     map{|s| s.split('=')}]
+                      map{|s| s.split('=')}]
+
+agents = (1..7).map { |x| "agent-" + x.to_s }
 
 Vagrant.configure("2") do |config|
   config.vm.box = "builds/virtualbox-ubuntu1804.box"
@@ -16,5 +18,10 @@ Vagrant.configure("2") do |config|
     shell.path = 'provision/start-agent.sh'
     shell.env = vault_config
   end
-    
+
+  agents.each do |agent|
+    config.vm.define agent do |agent_config|
+      agent_config.vm.hostname = agent + '.localdomain'
+    end
+  end
 end

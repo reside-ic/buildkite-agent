@@ -3,3 +3,4 @@ output-virtualbox-iso
 builds
 .vagrant
 vault_config
+.idea
